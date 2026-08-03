@@ -1,0 +1,12 @@
+node_modules/
+.pnpm-store/
+dist/
+coverage/
+.env
+.env.*
+!.env.example
+*.log
+.axiom-agent/
+
+# legacy runtime dir from pre-rename
+.agent-harness/

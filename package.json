@@ -1,0 +1,36 @@
+{
+  "name": "axiom-agent",
+  "version": "1.0.0",
+  "description": "A lightweight, provider-agnostic Agent Harness: reliable and executable agent engineering system built from first principles.",
+  "private": true,
+  "scripts": {
+    "build": "pnpm -r --if-present build",
+    "dev": "pnpm --filter @axiom-agent/website start",
+    "lint": "pnpm -r --if-present lint",
+    "test": "pnpm -r --if-present test",
+    "typecheck": "pnpm -r --if-present typecheck"
+  },
+  "keywords": [
+    "agent",
+    "llm",
+    "ai",
+    "agent-harness",
+    "runtime",
+    "context-engineering",
+    "tool-use",
+    "memory",
+    "evaluation",
+    "typescript"
+  ],
+  "author": "Johnny Zhu",
+  "license": "MIT",
+  "packageManager": "pnpm@10.12.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Johnny-zbb/axiom-agent.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Johnny-zbb/axiom-agent/issues"
+  },
+  "homepage": "https://johnny-zbb.github.io/axiom-agent/"
+}

@@ -1,0 +1,241 @@
+.heroBanner {
+  background-position: center;
+  background-size: cover;
+  color: #252b32;
+  min-height: 570px;
+  overflow: hidden;
+  position: relative;
+}
+
+.heroOverlay {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(246, 243, 236, 0.98) 0%,
+      rgba(246, 243, 236, 0.9) 28%,
+      rgba(246, 243, 236, 0.58) 48%,
+      rgba(246, 243, 236, 0.05) 72%
+    ),
+    linear-gradient(0deg, rgba(37, 43, 50, 0.2), transparent 35%);
+  inset: 0;
+  position: absolute;
+}
+
+.heroContent {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 570px;
+  position: relative;
+  z-index: 1;
+}
+
+.eyebrow,
+.authorKicker {
+  color: #8a6836;
+  font-size: 0.75rem;
+  font-weight: 750;
+  letter-spacing: 0.15em;
+  margin: 0 0 1rem;
+  text-transform: uppercase;
+}
+
+.heroTitle {
+  font-family: var(--ah-serif);
+  font-size: clamp(3.6rem, 7vw, 5.8rem);
+  letter-spacing: -0.055em;
+  line-height: 0.95;
+  margin: 0;
+}
+
+.heroSubtitle {
+  font-family: var(--ah-serif);
+  font-size: clamp(1.45rem, 2.4vw, 2rem);
+  font-weight: 650;
+  margin: 1.25rem 0 0.75rem;
+}
+
+.heroDescription {
+  color: #4d5051;
+  font-size: 1.04rem;
+  line-height: 1.8;
+  margin: 0;
+  max-width: 540px;
+}
+
+.buttons {
+  align-items: center;
+  display: flex;
+  gap: 0.8rem;
+  margin-top: 2rem;
+}
+
+.primaryButton,
+.secondaryButton {
+  align-items: center;
+  border: 1px solid #252b32;
+  border-radius: 2px;
+  display: inline-flex;
+  font-size: 0.92rem;
+  font-weight: 700;
+  gap: 1.2rem;
+  padding: 0.78rem 1.2rem;
+  text-decoration: none;
+  transition:
+    background 160ms ease,
+    color 160ms ease,
+    transform 160ms ease;
+}
+
+.primaryButton {
+  background: #252b32;
+  color: #f8f4eb;
+}
+
+.primaryButton:hover {
+  background: #171b20;
+  color: white;
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+
+.secondaryButton {
+  background: rgba(246, 243, 236, 0.54);
+  color: #252b32;
+}
+
+.secondaryButton:hover {
+  background: #f6f3ec;
+  color: #171b20;
+  text-decoration: none;
+}
+
+.authorSection {
+  background: #f6f3ec;
+  border-bottom: 1px solid var(--ah-border);
+  padding: 3.2rem 0;
+}
+
+.authorInner {
+  align-items: center;
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 88px minmax(0, 680px);
+  justify-content: center;
+}
+
+.avatar {
+  aspect-ratio: 1;
+  border: 2px solid #c5a66b;
+  border-radius: 50%;
+  box-shadow: 0 0 0 6px rgba(197, 166, 107, 0.13);
+  object-fit: cover;
+  object-position: 50% 19%;
+  width: 80px;
+}
+
+.authorInner h2 {
+  font-family: var(--ah-serif);
+  font-size: 1.65rem;
+  margin: 0 0 0.5rem;
+}
+
+.authorInner p:last-child {
+  color: var(--ah-muted);
+  line-height: 1.75;
+  margin: 0;
+}
+
+@media screen and (max-width: 996px) {
+  .heroBanner,
+  .heroContent {
+    min-height: 510px;
+  }
+
+  .heroBanner {
+    background-position: 58% center;
+  }
+
+  .heroOverlay {
+    background: linear-gradient(
+      90deg,
+      rgba(246, 243, 236, 0.96) 0%,
+      rgba(246, 243, 236, 0.82) 53%,
+      rgba(246, 243, 236, 0.18) 100%
+    );
+  }
+
+  .heroContent {
+    padding-inline: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .heroBanner,
+  .heroContent {
+    min-height: 560px;
+  }
+
+  .heroBanner {
+    background-position: 66% center;
+  }
+
+  .heroOverlay {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(246, 243, 236, 0.96) 0%,
+        rgba(246, 243, 236, 0.82) 58%,
+        rgba(246, 243, 236, 0.32) 100%
+      );
+  }
+
+  .heroContent {
+    justify-content: flex-start;
+    padding-top: 4.5rem;
+  }
+
+  .heroTitle {
+    font-size: 3.25rem;
+  }
+
+  .heroSubtitle {
+    font-size: 1.35rem;
+  }
+
+  .heroDescription {
+    font-size: 0.96rem;
+  }
+
+  .buttons {
+    align-items: stretch;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .primaryButton,
+  .secondaryButton {
+    justify-content: center;
+  }
+
+  .authorSection {
+    padding: 2.6rem 1rem;
+  }
+
+  .authorInner {
+    grid-template-columns: 64px 1fr;
+  }
+
+  .avatar {
+    width: 60px;
+  }
+
+  .authorInner h2 {
+    font-size: 1.35rem;
+  }
+
+  .authorInner p:last-child {
+    grid-column: 1 / -1;
+  }
+}

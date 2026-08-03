@@ -1,0 +1,531 @@
+.playground {
+  background: #fbf9f4;
+  border: 1px solid var(--ah-border);
+  border-radius: 12px;
+  color: #2d3031;
+  margin: 2rem 0 2.5rem;
+  overflow: hidden;
+  scroll-margin-top: calc(var(--ifm-navbar-height) + 1rem);
+}
+
+.header {
+  align-items: center;
+  border-bottom: 1px solid var(--ah-border);
+  display: flex;
+  justify-content: space-between;
+  min-height: 62px;
+  padding: 0.75rem 1rem;
+}
+
+.header > div:first-child {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.header > div:first-child span {
+  color: var(--ah-gold-dark);
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.header strong {
+  font-size: 0.95rem;
+}
+
+.controls {
+  align-items: center;
+  display: flex;
+  gap: 0.35rem;
+}
+
+.controls button {
+  background: transparent;
+  border: 1px solid #cec6b8;
+  border-radius: 5px;
+  color: #44494c;
+  cursor: pointer;
+  font-size: 0.72rem;
+  min-height: 36px;
+  min-width: 36px;
+  padding: 0.38rem 0.5rem;
+}
+
+.controls button:hover:not(:disabled) {
+  background: #f1ece2;
+}
+
+.controls button:disabled {
+  cursor: not-allowed;
+  opacity: 0.32;
+}
+
+.controls .playButton {
+  background: #252b32;
+  border-color: #252b32;
+  color: #fff;
+  min-width: 54px;
+}
+
+.controls .playButton:hover {
+  background: #343c43;
+}
+
+.controls .resetButton {
+  border: 0;
+  color: #656768;
+  min-width: auto;
+}
+
+.progress {
+  align-items: center;
+  background: #f3efe6;
+  display: grid;
+  gap: 0.45rem;
+  grid-template-columns: repeat(7, 1fr);
+  padding: 0.45rem 0.8rem;
+}
+
+.progress button {
+  align-items: center;
+  background: #ded9cf;
+  border: 0;
+  border-radius: 999px;
+  color: #6d6e6b;
+  cursor: pointer;
+  display: flex;
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.62rem;
+  height: 24px;
+  justify-content: center;
+  padding: 0;
+}
+
+.progress button.progressActive {
+  background: #dcc7a4;
+  color: #664b25;
+}
+
+.progress button.progressCurrent {
+  background: #8a602c;
+  box-shadow: 0 0 0 3px rgba(181, 139, 77, 0.16);
+  color: #fff;
+  font-weight: 700;
+}
+
+.mobileTabs {
+  display: none;
+}
+
+.workspace {
+  border-top: 1px solid var(--ah-border);
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  height: 380px;
+}
+
+.chatPanel,
+.tracePanel {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.chatPanel {
+  border-right: 1px solid var(--ah-border);
+}
+
+.panelTitle {
+  align-items: center;
+  border-bottom: 1px solid var(--ah-border);
+  display: flex;
+  justify-content: space-between;
+  min-height: 43px;
+  padding: 0.65rem 0.85rem;
+}
+
+.panelTitle strong {
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.75rem;
+}
+
+.panelTitle small {
+  color: #71736f;
+  font-size: 0.68rem;
+}
+
+.chatBody {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.8rem;
+  justify-content: center;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 1rem;
+  scrollbar-gutter: stable;
+}
+
+.userBubble,
+.assistantBubble {
+  border-radius: 9px;
+  font-size: 0.78rem;
+  line-height: 1.55;
+  max-width: 90%;
+  padding: 0.65rem 0.75rem;
+}
+
+.userBubble {
+  align-self: flex-end;
+  background: #344450;
+  color: white;
+}
+
+.assistantBubble {
+  animation: enter 220ms ease-out both;
+  align-self: flex-start;
+  background: #f0eadf;
+  border: 1px solid var(--ah-border);
+}
+
+.activity {
+  align-items: center;
+  align-self: center;
+  color: #71736f;
+  display: flex;
+  font-size: 0.7rem;
+  gap: 0.4rem;
+  text-align: center;
+}
+
+.activity i {
+  animation: loadingDot 900ms infinite ease-in-out;
+  background: var(--ah-gold);
+  border-radius: 50%;
+  height: 6px;
+  width: 6px;
+}
+
+.activity i:nth-child(2) {
+  animation-delay: 120ms;
+}
+
+.activity i:nth-child(3) {
+  animation-delay: 240ms;
+}
+
+.inputPreview {
+  border-top: 1px solid var(--ah-border);
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.65rem;
+}
+
+.inputPreview span {
+  background: #fffefa;
+  border: 1px solid var(--ah-border);
+  border-radius: 5px;
+  color: #858681;
+  flex: 1;
+  font-size: 0.72rem;
+  min-height: 38px;
+  padding: 0.55rem 0.6rem;
+}
+
+.inputPreview button {
+  background: #252b32;
+  border: 0;
+  border-radius: 5px;
+  color: white;
+  font-size: 0.7rem;
+  min-height: 38px;
+  min-width: 58px;
+  opacity: 0.48;
+  padding: 0.45rem 0.65rem;
+}
+
+.traceList {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 0.45rem;
+  scrollbar-gutter: stable;
+}
+
+.traceItem {
+  border: 1px solid transparent;
+  border-radius: 7px;
+  margin-bottom: 0.3rem;
+}
+
+.currentTrace {
+  background: #f4efe5;
+  border-color: #d8c7aa;
+}
+
+.traceSummary {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  color: #2d3031;
+  cursor: pointer;
+  display: grid;
+  gap: 0.55rem;
+  grid-template-columns: 24px 46px minmax(0, 1fr) 22px;
+  min-height: 48px;
+  padding: 0.48rem 0.55rem;
+  text-align: left;
+  width: 100%;
+}
+
+.stepNumber {
+  color: #85837c;
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.65rem;
+}
+
+.actor {
+  border-radius: 4px;
+  color: white;
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.62rem;
+  font-weight: 700;
+  padding: 0.22rem 0.28rem;
+  text-align: center;
+}
+
+.actorUSER {
+  background: #466b80;
+}
+
+.actorAPP {
+  background: #30363c;
+}
+
+.actorLLM {
+  background: #9a642c;
+}
+
+.actorTOOL {
+  background: #536f55;
+}
+
+.traceTitle {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.traceTitle strong {
+  font-size: 0.75rem;
+}
+
+.traceTitle small {
+  color: #777974;
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.64rem;
+}
+
+.chevron {
+  color: #8a602c;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.traceDetails {
+  animation: enter 160ms ease-out both;
+  padding: 0 0.55rem 0.65rem 4.25rem;
+}
+
+.traceDetails pre {
+  background: #252b32 !important;
+  border: 0 !important;
+  border-radius: 6px !important;
+  box-shadow: none !important;
+  margin: 0 !important;
+  max-height: 150px;
+  overflow: auto;
+  padding: 0.65rem !important;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.traceDetails code {
+  background: transparent;
+  border: 0;
+  color: #f4f0e7;
+  font-size: 0.7rem;
+  line-height: 1.5;
+}
+
+.footer {
+  align-items: center;
+  background: #f2ede3;
+  border-top: 1px solid var(--ah-border);
+  color: #585b59;
+  display: flex;
+  font-size: 0.7rem;
+  gap: 0.35rem;
+  min-height: 38px;
+  padding: 0.55rem 0.8rem;
+}
+
+.footer > span {
+  background: var(--ah-gold);
+  border-radius: 50%;
+  flex: 0 0 auto;
+  height: 7px;
+  width: 7px;
+}
+
+.footer > span.statusPulsing {
+  animation: statusPulse 900ms infinite ease-in-out;
+}
+
+.footer strong {
+  color: #8a602c;
+}
+
+@keyframes enter {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+}
+
+@keyframes statusPulse {
+  50% {
+    box-shadow: 0 0 0 5px rgba(181, 139, 77, 0.16);
+  }
+}
+
+@keyframes loadingDot {
+  0%,
+  80%,
+  100% {
+    opacity: 0.3;
+    transform: translateY(0);
+  }
+  40% {
+    opacity: 1;
+    transform: translateY(-3px);
+  }
+}
+
+@media (max-width: 700px) {
+  .header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.65rem;
+    padding-bottom: 0.65rem;
+  }
+
+  .controls {
+    display: grid;
+    grid-template-columns: 40px minmax(72px, 1fr) 40px auto;
+    width: 100%;
+  }
+
+  .controls button {
+    min-height: 40px;
+  }
+
+  .progress {
+    gap: 0.35rem;
+    padding: 0.5rem 0.65rem;
+  }
+
+  .progress button {
+    height: 28px;
+  }
+
+  .mobileTabs {
+    background: #f3efe6;
+    border-top: 1px solid var(--ah-border);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 0.35rem;
+  }
+
+  .mobileTabs button {
+    align-items: center;
+    background: transparent;
+    border: 0;
+    border-radius: 5px;
+    color: #696c69;
+    display: flex;
+    font-family: var(--ifm-font-family-monospace);
+    font-size: 0.72rem;
+    gap: 0.35rem;
+    justify-content: center;
+    min-height: 40px;
+  }
+
+  .mobileTabs button.activeTab {
+    background: #fffefa;
+    box-shadow: 0 1px 3px rgba(40, 42, 42, 0.1);
+    color: #252b32;
+    font-weight: 700;
+  }
+
+  .mobileTabs button span {
+    align-items: center;
+    background: #ded7ca;
+    border-radius: 999px;
+    display: inline-flex;
+    font-size: 0.62rem;
+    height: 18px;
+    justify-content: center;
+    min-width: 18px;
+    padding: 0 0.25rem;
+  }
+
+  .workspace {
+    border-top: 1px solid var(--ah-border);
+    display: block;
+    height: 360px;
+  }
+
+  .chatPanel,
+  .tracePanel {
+    display: none;
+    height: 100%;
+  }
+
+  .chatPanel.mobileActive,
+  .tracePanel.mobileActive {
+    display: flex;
+  }
+
+  .chatPanel {
+    border-right: 0;
+  }
+
+  .panelTitle small {
+    font-size: 0.65rem;
+  }
+
+  .traceDetails {
+    padding-left: 4.05rem;
+  }
+
+  .footer {
+    align-items: flex-start;
+    line-height: 1.45;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .activity i,
+  .assistantBubble,
+  .traceDetails,
+  .footer > span.statusPulsing {
+    animation: none;
+  }
+}

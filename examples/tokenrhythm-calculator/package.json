@@ -1,0 +1,14 @@
+{
+  "name": "@axiom-agent/example-tokenrhythm-calculator",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "pnpm --filter @axiom-agent/openai-compatible build && pnpm --filter @axiom-agent/session-jsonl build && node index.mjs"
+  },
+  "dependencies": {
+    "@axiom-agent/core": "workspace:*",
+    "@axiom-agent/openai-compatible": "workspace:*",
+    "@axiom-agent/session-jsonl": "workspace:*"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "validate-port",
+  "title": "Add strict port validation",
+  "prompt": "Implement strict parsePort validation in port.mjs. Accept integer ports from 1 through 65535 and throw RangeError for all other inputs. Run the tests.",
+  "fixture": "fixture",
+  "verifier": { "command": "node", "args": ["--test", "port.test.mjs"], "timeoutMs": 10000 },
+  "immutablePaths": ["port.test.mjs"],
+  "expectInitialFailure": true,
+  "maxTurns": 12
+}

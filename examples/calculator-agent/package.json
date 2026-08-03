@@ -1,0 +1,12 @@
+{
+  "name": "@axiom-agent/example-calculator-agent",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "pnpm --filter @axiom-agent/core build && node index.mjs"
+  },
+  "dependencies": {
+    "@axiom-agent/core": "workspace:*"
+  }
+}

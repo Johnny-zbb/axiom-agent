@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 560" role="img" aria-labelledby="title desc">
+  <title id="title">从普通工具调用到 Axiom Agent</title>
+  <desc id="desc">随着调用轮次和工程问题增加，手写的工具调用逐步演化为带有 Runtime、State、Context、Tool Runtime 和 Observability 的 Axiom Agent。</desc>
+  <defs>
+    <style>
+      .title{font:700 25px Inter,"PingFang SC","Microsoft YaHei",sans-serif;fill:#202529}
+      .sub{font:14px Inter,"PingFang SC","Microsoft YaHei",sans-serif;fill:#686969}
+      .num{font:700 12px ui-monospace,SFMono-Regular,Consolas,monospace;fill:#8a6836;letter-spacing:1px}
+      .head{font:700 18px Inter,"PingFang SC","Microsoft YaHei",sans-serif;fill:#202529}
+      .body{font:14px Inter,"PingFang SC","Microsoft YaHei",sans-serif;fill:#555a5d}
+      .tag{font:700 12px Inter,"PingFang SC","Microsoft YaHei",sans-serif;fill:#38444c}
+      .inverse{fill:#f6f3ec}
+      .gold{fill:#d4b06f}
+    </style>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0 0 8 4 0 8Z" fill="#b58b4d"/>
+    </marker>
+  </defs>
+  <rect x="1" y="1" width="758" height="558" rx="18" fill="#fbf9f4" stroke="#ded8cc" stroke-width="2"/>
+  <text x="42" y="54" class="title">复杂性不是突然出现的</text>
+  <text x="42" y="82" class="sub">Harness 是普通 LLM 调用在任务变长之后自然生长出的工程层。</text>
+
+  <g transform="translate(42 120)">
+    <rect width="202" height="354" rx="14" fill="#f6f3ec" stroke="#ded8cc"/>
+    <text x="22" y="34" class="num">01 · ONE CALL</text>
+    <text x="22" y="70" class="head">一次工具调用</text>
+    <text x="22" y="103" class="body">应用发送请求</text>
+    <text x="22" y="128" class="body">执行一个工具</text>
+    <text x="22" y="153" class="body">返回最终回答</text>
+    <path d="M22 184H180" stroke="#ded8cc"/>
+    <rect x="22" y="208" width="158" height="34" rx="17" fill="#ebe7de"/>
+    <text x="101" y="230" text-anchor="middle" class="tag">messages 数组</text>
+    <rect x="22" y="252" width="158" height="34" rx="17" fill="#ebe7de"/>
+    <text x="101" y="274" text-anchor="middle" class="tag">if / else</text>
+    <rect x="22" y="296" width="158" height="34" rx="17" fill="#ebe7de"/>
+    <text x="101" y="318" text-anchor="middle" class="tag">本地函数</text>
+  </g>
+
+  <path d="M252 297H282" stroke="#b58b4d" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <g transform="translate(290 120)">
+    <rect width="202" height="354" rx="14" fill="#f6f3ec" stroke="#ded8cc"/>
+    <text x="22" y="34" class="num">02 · AGENT LOOP</text>
+    <text x="22" y="70" class="head">不确定的多轮执行</text>
+    <text x="22" y="103" class="body">模型反复决定下一步</text>
+    <text x="22" y="128" class="body">工具结果继续进入消息</text>
+    <text x="22" y="153" class="body">直到模型停止调用</text>
+    <path d="M22 184H180" stroke="#ded8cc"/>
+    <rect x="22" y="208" width="158" height="34" rx="17" fill="#ebe7de"/>
+    <text x="101" y="230" text-anchor="middle" class="tag">while loop</text>
+    <rect x="22" y="252" width="158" height="34" rx="17" fill="#ebe7de"/>
+    <text x="101" y="274" text-anchor="middle" class="tag">tool dispatch</text>
+    <rect x="22" y="296" width="158" height="34" rx="17" fill="#ebe7de"/>
+    <text x="101" y="318" text-anchor="middle" class="tag">message append</text>
+  </g>
+
+  <path d="M500 297H530" stroke="#b58b4d" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <g transform="translate(538 120)">
+    <rect width="180" height="354" rx="14" fill="#252b32"/>
+    <text x="22" y="34" class="num gold">03 · HARNESS</text>
+    <text x="22" y="70" class="head inverse">可靠的运行系统</text>
+    <g fill="#f6f3ec" font-family="Inter,'PingFang SC','Microsoft YaHei',sans-serif" font-size="14">
+      <text x="22" y="111">Runtime</text>
+      <text x="22" y="149">State</text>
+      <text x="22" y="187">Context Builder</text>
+      <text x="22" y="225">Tool Runtime</text>
+      <text x="22" y="263">Memory</text>
+      <text x="22" y="301">Logs &amp; Evaluation</text>
+    </g>
+    <g fill="#d4b06f">
+      <circle cx="151" cy="106" r="4"/>
+      <circle cx="151" cy="144" r="4"/>
+      <circle cx="151" cy="182" r="4"/>
+      <circle cx="151" cy="220" r="4"/>
+      <circle cx="151" cy="258" r="4"/>
+      <circle cx="151" cy="296" r="4"/>
+    </g>
+  </g>
+
+  <path d="M42 510H718" stroke="#ded8cc"/>
+  <text x="380" y="535" text-anchor="middle" class="sub">轮次增加 · 状态增加 · 失败场景增加 · 对可观测性的要求增加</text>
+</svg>

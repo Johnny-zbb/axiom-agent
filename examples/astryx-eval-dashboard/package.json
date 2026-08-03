@@ -1,0 +1,27 @@
+{
+  "name": "@axiom-agent/example-astryx-eval-dashboard",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "astryx": "node ../../node_modules/@astryxdesign/cli/bin/astryx.mjs",
+    "build": "tsc -p tsconfig.json && vite build",
+    "dev": "vite"
+  },
+  "astryx": {
+    "theme": "@astryxdesign/theme-neutral"
+  },
+  "dependencies": {
+    "@astryxdesign/core": "0.1.9",
+    "@astryxdesign/theme-neutral": "0.1.9",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@astryxdesign/cli": "0.1.9",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "typescript": "~6.0.2",
+    "vite": "^7.0.0"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "repair-retry",
+  "title": "Repair an async retry loop",
+  "prompt": "Fix retry.mjs so an operation may be attempted exactly maxAttempts times and the last error is thrown after all attempts fail. Run the tests.",
+  "fixture": "fixture",
+  "verifier": { "command": "node", "args": ["--test", "retry.test.mjs"], "timeoutMs": 10000 },
+  "immutablePaths": ["retry.test.mjs"],
+  "expectInitialFailure": true,
+  "maxTurns": 12
+}

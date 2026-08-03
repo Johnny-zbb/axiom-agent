@@ -1,0 +1,10 @@
+{
+  "id": "normalize-profile",
+  "title": "Repair behavior across two modules",
+  "prompt": "Fix the profile formatting behavior across profile.mjs and text.mjs. Names must be trimmed and internal whitespace collapsed to one space. Preserve exports and run the tests.",
+  "fixture": "fixture",
+  "verifier": { "command": "node", "args": ["--test", "profile.test.mjs"], "timeoutMs": 10000 },
+  "immutablePaths": ["profile.test.mjs"],
+  "expectInitialFailure": true,
+  "maxTurns": 12
+}

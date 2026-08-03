@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "lib": ["ES2022"],
+    "rootDir": "src",
+    "outDir": "dist",
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "noImplicitOverride": true,
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
+    "types": ["node"],
+    "paths": {
+      "@axiom-agent/core": ["../core/dist/index.d.ts"],
+      "@axiom-agent/coding-agent": ["../coding-agent/dist/index.d.ts"],
+      "@axiom-agent/session-jsonl": ["../session-jsonl/dist/index.d.ts"],
+      "@axiom-agent/trace-jsonl": ["../trace-jsonl/dist/index.d.ts"]
+    }
+  },
+  "include": ["src/**/*.ts"]
+}

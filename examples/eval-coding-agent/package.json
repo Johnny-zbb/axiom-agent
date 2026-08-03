@@ -1,0 +1,13 @@
+{
+  "name": "@axiom-agent/example-eval-coding-agent",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "pnpm --filter @axiom-agent/eval build && pnpm --filter @axiom-agent/openai-compatible build && node index.mjs"
+  },
+  "dependencies": {
+    "@axiom-agent/eval": "workspace:*",
+    "@axiom-agent/openai-compatible": "workspace:*"
+  }
+}

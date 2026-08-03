@@ -1,0 +1,13 @@
+{
+  "name": "@axiom-agent/example-resumable-session",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "pnpm --filter @axiom-agent/session-jsonl build && node index.mjs"
+  },
+  "dependencies": {
+    "@axiom-agent/core": "workspace:*",
+    "@axiom-agent/session-jsonl": "workspace:*"
+  }
+}

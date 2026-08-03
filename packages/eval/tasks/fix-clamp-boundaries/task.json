@@ -1,0 +1,10 @@
+{
+  "id": "fix-clamp-boundaries",
+  "title": "Fix clamp boundary behavior",
+  "prompt": "Fix clamp.mjs so clamp returns values inside the inclusive min/max range correctly. Run the provided tests.",
+  "fixture": "fixture",
+  "verifier": { "command": "node", "args": ["--test", "clamp.test.mjs"], "timeoutMs": 10000 },
+  "immutablePaths": ["clamp.test.mjs"],
+  "expectInitialFailure": true,
+  "maxTurns": 10
+}

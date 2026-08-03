@@ -1,0 +1,10 @@
+{
+  "id": "implement-sum",
+  "title": "Implement a missing sum function",
+  "prompt": "Implement the sum function in math.mjs. Preserve the public API and use the tests to verify the change.",
+  "fixture": "fixture",
+  "verifier": { "command": "node", "args": ["--test", "math.test.mjs"], "timeoutMs": 10000 },
+  "immutablePaths": ["math.test.mjs"],
+  "expectInitialFailure": true,
+  "maxTurns": 10
+}

@@ -1,0 +1,32 @@
+{
+  "name": "@axiom-agent/eval",
+  "version": "0.1.0",
+  "description": "Deterministic Coding Agent evaluation runner for Axiom Agent",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": ["dist", "tasks", "README.md"],
+  "scripts": {
+    "build": "pnpm --filter @axiom-agent/core build && pnpm --filter @axiom-agent/coding-agent build && pnpm --filter @axiom-agent/session-jsonl build && pnpm --filter @axiom-agent/trace-jsonl build && tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "pnpm run build && node --test"
+  },
+  "dependencies": {
+    "@axiom-agent/coding-agent": "workspace:*",
+    "@axiom-agent/core": "workspace:*",
+    "@axiom-agent/session-jsonl": "workspace:*",
+    "@axiom-agent/trace-jsonl": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^26.0.0",
+    "typescript": "~6.0.2"
+  },
+  "engines": { "node": ">=20" },
+  "license": "MIT"
+}

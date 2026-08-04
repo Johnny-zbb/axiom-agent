@@ -1,17 +1,36 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 
-import {isAllowedWriteOrigin, isJsonContentType} from '../server-guards.mjs';
+import {isAllowedOrigin, isJsonContentType} from '../server-guards.mjs';
 
-test('allows same-origin and non-browser write requests', () => {
-  assert.equal(isAllowedWriteOrigin(undefined, 4174), true);
-  assert.equal(isAllowedWriteOrigin('http://127.0.0.1:4174', 4174), true);
-  assert.equal(isAllowedWriteOrigin('http://localhost:4174', 4174), true);
+const allowed = [
+  'http://127.0.0.1:4174',
+  'http://localhost:4174',
+  'http://localhost:1420',
+  'http://tauri.localhost',
+  'https://tauri.localhost',
+  'tauri://localhost',
+  'https://custom.example',
+];
+
+test('allows missing origin (non-browser clients)', () => {
+  assert.equal(isAllowedOrigin(undefined, allowed), true);
 });
 
-test('rejects cross-origin write requests', () => {
-  assert.equal(isAllowedWriteOrigin('https://example.test', 4174), false);
-  assert.equal(isAllowedWriteOrigin('http://127.0.0.1:9999', 4174), false);
+test('allows configured same-origin and desktop origins', () => {
+  assert.equal(isAllowedOrigin('http://127.0.0.1:4174', allowed), true);
+  assert.equal(isAllowedOrigin('http://localhost:4174', allowed), true);
+  assert.equal(isAllowedOrigin('http://localhost:1420', allowed), true);
+  assert.equal(isAllowedOrigin('http://tauri.localhost', allowed), true);
+  assert.equal(isAllowedOrigin('https://tauri.localhost', allowed), true);
+  assert.equal(isAllowedOrigin('tauri://localhost', allowed), true);
+  assert.equal(isAllowedOrigin('https://custom.example', allowed), true);
+});
+
+test('rejects unlisted cross-origin writes', () => {
+  assert.equal(isAllowedOrigin('https://example.test', allowed), false);
+  assert.equal(isAllowedOrigin('http://127.0.0.1:9999', allowed), false);
+  assert.equal(isAllowedOrigin('https://evil.example', allowed), false);
 });
 
 test('accepts only JSON request content types', () => {

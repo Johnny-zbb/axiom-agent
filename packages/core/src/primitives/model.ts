@@ -12,6 +12,7 @@ export type ModelStopReason = "stop" | "tool_use";
 
 export type ModelStreamEvent =
   | { readonly type: "text_delta"; readonly delta: string }
+  | { readonly type: "reasoning_delta"; readonly delta: string }
   | { readonly type: "tool_call"; readonly call: ToolCall }
   | { readonly type: "done"; readonly stopReason: ModelStopReason };
 

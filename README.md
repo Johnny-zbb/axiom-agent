@@ -75,7 +75,7 @@ pnpm --filter @axiom-agent/example-resumable-session start demo second
 
 真实模型与 calculator tool 示例见 [`examples/tokenrhythm-calculator`](examples/tokenrhythm-calculator)。
 真实文件修改与测试闭环见 [`examples/coding-agent`](examples/coding-agent)。
-评测结果界面见 [`examples/astryx-eval-dashboard`](examples/astryx-eval-dashboard)，交互式 Coding Agent 界面见 [`examples/coding-agent-gui`](examples/coding-agent-gui)。
+评测结果界面见 [`examples/astryx-eval-dashboard`](examples/astryx-eval-dashboard)，交互式 Coding Agent 桌面应用（Tauri + React + shadcn）见 [`examples/coding-agent-gui`](examples/coding-agent-gui)。
 
 - [v0.1 实现架构](docs/architecture/implemented-v0.1.md)
 - [真实 Coding Agent 验证记录](docs/decisions/002-real-coding-agent-proof.md)

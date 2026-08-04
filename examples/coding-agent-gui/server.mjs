@@ -11,26 +11,71 @@ import {OpenAICompatibleChatModel} from '@axiom-agent/openai-compatible';
 import {JsonlSessionStore} from '@axiom-agent/session-jsonl';
 import {JsonlRunTrace} from '@axiom-agent/trace-jsonl';
 
-import {isAllowedWriteOrigin, isJsonContentType} from './server-guards.mjs';
+import {isAllowedOrigin, isJsonContentType} from './server-guards.mjs';
 
 const appDirectory = dirname(fileURLToPath(import.meta.url));
-const repositoryRoot = resolve(appDirectory, '..', '..');
-const distDirectory = resolve(appDirectory, 'dist');
-const stateDirectory = resolve(repositoryRoot, '.axiom-agent', 'gui');
+const sidecarMode = process.env.AXIOM_SIDECAR === '1';
 const port = positiveInteger(process.env.AXIOM_GUI_PORT ?? '4174', 'port');
 const runs = new Map();
+
+function allowedOrigins() {
+  const defaults = [
+    `http://127.0.0.1:${port}`,
+    `http://localhost:${port}`,
+    'http://localhost:1420',
+    'http://tauri.localhost',
+    'https://tauri.localhost',
+    'tauri://localhost',
+  ];
+  const extra = (process.env.AXIOM_ALLOWED_ORIGINS ?? '')
+    .split(',')
+    .map(value => value.trim())
+    .filter(Boolean);
+  return [...defaults, ...extra];
+}
+
+function repositoryRoot() {
+  if (process.env.AXIOM_WORKSPACE) return process.env.AXIOM_WORKSPACE;
+  if (sidecarMode) return process.cwd();
+  return resolve(appDirectory, '..', '..');
+}
+
+function stateDirectory() {
+  if (process.env.AXIOM_STATE_DIR) return process.env.AXIOM_STATE_DIR;
+  return resolve(repositoryRoot(), '.axiom-agent', 'gui');
+}
+
+const distDirectory = sidecarMode ? undefined : resolve(appDirectory, 'dist');
 
 const server = createServer(async (request, response) => {
   try {
     const url = new URL(request.url ?? '/', `http://${request.headers.host ?? '127.0.0.1'}`);
-    if (request.method === 'POST' && !isAllowedWriteOrigin(request.headers.origin, port)) {
+    const origin = request.headers.origin;
+    const allowed = isAllowedOrigin(origin, allowedOrigins());
+
+    if (origin && allowed) {
+      response.setHeader('access-control-allow-origin', origin);
+      response.setHeader('vary', 'Origin');
+    }
+
+    if (request.method === 'OPTIONS') {
+      response.writeHead(204, {
+        'access-control-allow-methods': 'GET, POST, OPTIONS',
+        'access-control-allow-headers': 'Content-Type',
+        'access-control-max-age': '86400',
+        ...(origin && allowed ? {'access-control-allow-origin': origin, vary: 'Origin'} : {}),
+      });
+      return response.end();
+    }
+
+    if (request.method === 'POST' && !allowed) {
       return json(response, 403, {error: 'Cross-origin write requests are not allowed.'});
     }
     if (request.method === 'GET' && url.pathname === '/api/health') {
       return json(response, 200, {
         ready: Boolean(process.env.TOKENRHYTHM_API_KEY),
         model: process.env.TOKENRHYTHM_MODEL ?? 'deepseek-v4-flash',
-        defaultWorkspace: process.env.AXIOM_GUI_WORKSPACE ?? repositoryRoot,
+        defaultWorkspace: process.env.AXIOM_GUI_WORKSPACE ?? repositoryRoot(),
       });
     }
     if (request.method === 'POST' && url.pathname === '/api/runs') {
@@ -46,7 +91,7 @@ const server = createServer(async (request, response) => {
       controller.abort(new Error('Stopped by user.'));
       return json(response, 202, {stopped: true});
     }
-    if (request.method === 'GET') return await serveStatic(url.pathname, response);
+    if (request.method === 'GET' && !sidecarMode) return await serveStatic(url.pathname, response);
     return json(response, 404, {error: 'Not found.'});
   } catch (error) {
     return json(response, 500, {error: errorMessage(error)});
@@ -54,7 +99,7 @@ const server = createServer(async (request, response) => {
 });
 
 server.listen(port, '127.0.0.1', () => {
-  console.log(`Coding Agent GUI -> http://127.0.0.1:${port}`);
+  console.log(`Coding Agent GUI server -> http://127.0.0.1:${port} (sidecar=${sidecarMode})`);
 });
 
 async function startRun(request, response) {
@@ -80,9 +125,9 @@ async function startRun(request, response) {
   });
   const session = new Session({
     id: sessionId,
-    store: new JsonlSessionStore({directory: resolve(stateDirectory, 'sessions')}),
+    store: new JsonlSessionStore({directory: resolve(stateDirectory(), 'sessions')}),
   });
-  const trace = new JsonlRunTrace({directory: resolve(stateDirectory, 'traces'), runId});
+  const trace = new JsonlRunTrace({directory: resolve(stateDirectory(), 'traces'), runId});
   const harness = new AgentHarness({agent, session, maxTurns: 20});
 
   runs.set(runId, controller);

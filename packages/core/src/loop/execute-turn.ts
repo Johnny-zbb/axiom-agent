@@ -51,6 +51,9 @@ export async function* executeTurn(input: ExecuteTurnInput): AsyncGenerator<Agen
         content += event.delta;
         yield { type: "message_update", delta: event.delta };
         break;
+      case "reasoning_delta":
+        yield { type: "reasoning_update", delta: event.delta };
+        break;
       case "tool_call":
         toolCalls.push(event.call);
         break;

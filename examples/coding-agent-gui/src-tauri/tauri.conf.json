@@ -1,0 +1,33 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "Axiom Coding Agent",
+  "version": "0.1.0",
+  "identifier": "dev.axiom.coding-agent",
+  "build": {
+    "beforeDevCommand": "pnpm dev:renderer:tauri",
+    "devUrl": "http://localhost:1420",
+    "beforeBuildCommand": "pnpm build:renderer:tauri",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "Axiom Agent · Coding Agent",
+        "width": 1280,
+        "height": 800,
+        "minWidth": 900,
+        "minHeight": 600,
+        "resizable": true
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": ["nsis"],
+    "externalBin": ["binaries/agent-server"],
+    "icon": ["icons/icon.ico"]
+  }
+}

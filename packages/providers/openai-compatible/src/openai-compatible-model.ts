@@ -102,6 +102,9 @@ export class OpenAICompatibleChatModel implements Model {
       if (typeof choice.delta.content === "string" && choice.delta.content.length > 0) {
         yield { type: "text_delta", delta: choice.delta.content };
       }
+      if (typeof choice.delta.reasoning_content === "string" && choice.delta.reasoning_content.length > 0) {
+        yield { type: "reasoning_delta", delta: choice.delta.reasoning_content };
+      }
       for (const fragment of choice.delta.tool_calls ?? []) {
         mergeToolCall(pendingToolCalls, fragment);
       }
@@ -252,6 +255,7 @@ interface ChatCompletionChunk {
   readonly choices: readonly {
     readonly delta: {
       readonly content?: string | null;
+      readonly reasoning_content?: string | null;
       readonly tool_calls?: readonly ToolCallFragment[];
     };
     readonly finish_reason?: string | null;

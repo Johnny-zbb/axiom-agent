@@ -1,6 +1,6 @@
-export function isAllowedWriteOrigin(origin, port) {
+export function isAllowedOrigin(origin, allowedOrigins) {
   if (origin === undefined) return true;
-  return origin === `http://127.0.0.1:${port}` || origin === `http://localhost:${port}`;
+  return allowedOrigins.includes(origin);
 }
 
 export function isJsonContentType(contentType) {

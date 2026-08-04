@@ -5,8 +5,20 @@ coverage/
 .env
 .env.*
 !.env.example
+!.env.tauri
 *.log
 .axiom-agent/
 
 # legacy runtime dir from pre-rename
 .agent-harness/
+
+# desktop build artifacts (match nested example dirs too)
+**/src-tauri/target/
+**/src-tauri/binaries/
+**/src-tauri/gen/
+
+# local agent tooling (skills installed per-developer)
+.agents/
+.claude/
+.pi/
+skills-lock.json

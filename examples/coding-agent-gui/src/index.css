@@ -1,0 +1,134 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@plugin '@tailwindcss/typography';
+@import '@fontsource-variable/geist';
+@import '@fontsource-variable/geist-mono';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --radius: 0.75rem;
+  /* Warm neutrals, Codex-inspired: off-white canvas, warm near-black ink, copper accent. */
+  --background: #faf9f7;
+  --foreground: #201f1d;
+  --card: #ffffff;
+  --card-foreground: #201f1d;
+  --popover: #ffffff;
+  --popover-foreground: #201f1d;
+  --primary: #201f1d;
+  --primary-foreground: #f7f5f2;
+  --secondary: #f0eee9;
+  --secondary-foreground: #201f1d;
+  --muted: #f1efe9;
+  --muted-foreground: #6f6a62;
+  --accent: #f3e8d9;
+  --accent-foreground: #7a4e20;
+  --destructive: #c2413a;
+  --border: #e7e3db;
+  --input: #e7e3db;
+  --ring: #b9803f;
+  --copper: #b9803f;
+  --chart-1: #b9803f;
+  --chart-2: #7a8b6f;
+  --chart-3: #8a7b9e;
+  --chart-4: #c69b5a;
+  --chart-5: #a06a4a;
+  --sidebar: #f4f1ea;
+  --sidebar-foreground: #201f1d;
+  --sidebar-primary: #201f1d;
+  --sidebar-primary-foreground: #f7f5f2;
+  --sidebar-accent: #ece7dc;
+  --sidebar-accent-foreground: #201f1d;
+  --sidebar-border: transparent;
+  --sidebar-ring: #b9803f;
+}
+
+.dark {
+  --background: #211f1c;
+  --foreground: #f1ede6;
+  --card: #282622;
+  --card-foreground: #f1ede6;
+  --popover: #282622;
+  --popover-foreground: #f1ede6;
+  --primary: #f1ede6;
+  --primary-foreground: #201f1d;
+  --secondary: #35322c;
+  --secondary-foreground: #f1ede6;
+  --muted: #2c2a26;
+  --muted-foreground: #a7a196;
+  --accent: #3a2f23;
+  --accent-foreground: #e8c68c;
+  --destructive: #d9625a;
+  --border: #37342e;
+  --input: #403c35;
+  --ring: #c89b5a;
+  --copper: #e0b476;
+  --chart-1: #e0b476;
+  --chart-2: #8fa388;
+  --chart-3: #a293b8;
+  --chart-4: #d4a860;
+  --chart-5: #c0805c;
+  --sidebar: #26241f;
+  --sidebar-foreground: #f1ede6;
+  --sidebar-primary: #f1ede6;
+  --sidebar-primary-foreground: #201f1d;
+  --sidebar-accent: #322e27;
+  --sidebar-accent-foreground: #f1ede6;
+  --sidebar-border: transparent;
+  --sidebar-ring: #c89b5a;
+}
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --font-sans: 'Geist Variable', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: 'Geist Mono Variable', ui-monospace, 'Cascadia Code', monospace;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-copper: var(--copper);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background font-sans text-foreground antialiased;
+  }
+}
+
+/* Subtle warm selection color */
+::selection {
+  background: color-mix(in oklab, var(--copper) 30%, transparent);
+}
